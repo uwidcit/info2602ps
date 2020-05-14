@@ -46,12 +46,42 @@ def signup():
 
 @app.route('/myBooks', methods=['POST'])
 @jwt_required()
-def create my_Book():
+def create_my_Book():
   data= request.get_json()
   rec = myBooks(mbid=data["mbid"], id=current_identity.id,bid=data["bid"], name=data["name"], author=data["author"])
   db.session.add(rec)
   db.session.commit()
   return "Added", 201
+
+@app.route('/book', methods=['GET'])
+def get_Books():
+  books= Book.query.all()
+  books= [book.toDict() for book in Books]
+  return json.dumps(books)
+
+@app.route('/myBooks', methods=['GET'])
+@jwt_required()
+def get_my_books():
+  queryset = myBooks.query.filter_by(id=current_identity.id).all()
+  if queryset == None:
+    return 'Invalid id or unauthorized'
+  if len(queryset) == 0:
+    return 'No Books stored'
+  book = [book.toDict() for book in queryset]
+  return json.dumps(book)
+
+@app.route('/myBooks/<num>', methods=['GET'])
+@jwt_required()
+def get_my_books(num):
+  num = int(num)
+  queryset = myBooks.query.filter_by(id=current_identity.id).all()
+  if queryset == None:
+    return 'Invalid id or unauthorized'
+  if len(queryset) == 0:
+    return 'No Books stored'
+  if num > len(queryset):
+    return 'Invalid num specified'
+  return json.dumps(queryset[num-1].toDict())
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
