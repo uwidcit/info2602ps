@@ -1,9 +1,11 @@
 import json
-from flask_cors import CORS
-from flask import Flask, request, render_template
+from flask import Flask, request
+from flask_jwt import JWT, jwt_required, current_identity
 from sqlalchemy.exc import IntegrityError
+from datetime import timedelta
+from flask_cors import CORS
 
-from models import db, Logs
+from models import db, User, Book, myBooks
 
 ''' Begin boilerplate code '''
 def create_app():
@@ -29,9 +31,27 @@ def client_app():
 def client_app():
   return app.send_static_file('app.html')
 
-@app.route('/book')
-def client_app():
-  return app.send_static_file('book.html')
+@app.route('/signup', methods=['POST'])
+def signup():
+  userdata = request.get_json() # get userdata
+  newuser = User(username=userdata['username'], email=userdata['email']) # create user object
+  newuser.set_password(userdata['password']) # set password
+  try:
+    db.session.add(newuser)
+    db.session.commit() # save user
+  except IntegrityError: # attempted to insert a duplicate user
+    db.session.rollback()
+    return 'username or email already exists' # error message
+  return 'user created' # success
+
+@app.route('/myBooks', methods=['POST'])
+@jwt_required()
+def create my_Book():
+  data= request.get_json()
+  rec = myBooks(mbid=data["mbid"], id=current_identity.id,bid=data["bid"], name=data["name"], author=data["author"])
+  db.session.add(rec)
+  db.session.commit()
+  return "Added", 201
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
