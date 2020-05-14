@@ -29,5 +29,9 @@ def client_app():
 def client_app():
   return app.send_static_file('app.html')
 
+@app.route('/book')
+def client_app():
+  return app.send_static_file('book.html')
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, debug=True)
