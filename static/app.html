@@ -1,31 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Frontend App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-     <!--Import Google Icon Font-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Book Keeper</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <nav class="green">
+  </head>
+  <body>
+
+    <nav class="nav-extended blue">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">Frontend App</a>
+        <a href="#" class="brand-logo">Book Keeper App</a>
+        <ul id="nav-mobile" class="right">
+          <li><a href="#" onclick="logout()">Log out</a></li>
+        </ul>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a class="active" href="#search">Search Books</a></li>
+          <li class="tab"><a  href="#mybooks">My Books</a></li>
+        </ul>
       </div>
     </nav>
 
-    <div id="content">
-        <h1>This view is rendered entierly on the client!</h1>
-        <h2>It can be statically served</h2>
-    </div>
-    
-  
+    <section id="search" class="col s12 container">
+      <div class="container">
+	<div class="jumbotron">
+		<h3 class="text-center">Search for any Book</h3>
+		<form id="searchForm">
+			<input type="text" name="search" id="searchText" class="form-control" placeholder="Search book">
+		</form>
+	</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-</body>
+
+	<div class="container">
+		<div class="row" id="books">
+			
+		</div>
+	</div>
+
+
+      </div>
+    </section>
+
+    <section id="mybooks" class="col s12 container"> 
+	<table class="col m8 offset-m2">
+            <thead>
+              <tr>
+                  <th>Book</th>
+                  <th>Author</th>
+                  <th>Delete</th>
+              </tr>
+            </thead>
+
+            <tbody id="myBookListing">
+             
+            </tbody>
+          </table>
+    </section>
+
+
+    <script
+	src="https://code.jquery.com/jquery-3.2.0.min.js"
+	integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+	crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+    <script type="text/javascript" src="Book.js"></script>
+
+    <script src="util.js"></script>
+    <script src="app.js"></script>
+    <script src="main.js"></script>
+
+  </body>
 </html>
