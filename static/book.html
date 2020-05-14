@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width">
+	<title>Book Info</title> 
+    	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <nav class="nav-extended blue">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Book Keeper App</a>
+        <ul id="nav-mobile" class="right">
+          <li><a href="#" onclick="logout()">Log out</a></li>
+        </ul>
+      </div>
+      <div class="nav-content">
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a class="active" href="#search">Search Books</a></li>
+          <li class="tab"><a  href="#mybooks">My Books</a></li>
+        </ul>
+      </div>
+    </nav>
+	
+	<div class="container">
+		<div class="well hidden" id="book">
+			
+		</div>
+	</div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.2.0.min.js"
+        integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+    <script type="text/javascript" src="Book.js"></script>
+    <script type="text/javascript">
+        getbook();
+    </script>
+    <script src="main.js"></script>
+</body>
+</html>
