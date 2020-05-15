@@ -8,7 +8,7 @@ class myBooks(db.Model):
   mbid= db.Column('bid', db.Integer, primary_key= True)
   id= db.Column('id', db.Integer, db.ForeignKey('user.id'))
   bid= db.Column('code', db.String(10), db.ForeignKey('Book.bid'))
-  name= db.column(db.String(80), nullable= False)
+  name= db.column(db.String(80))
   author= db.column(db.String(80))
   books= db.relationship('Book')
 
