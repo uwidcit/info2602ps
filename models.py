@@ -5,11 +5,11 @@ db = SQLAlchemy()
 
 
 class myBooks(db.Model):
-  mbid= db.Column('bid', db.Integer, primary_key= True)
+  mbid= db.Column('mbid', db.Integer, primary_key= True)
   id= db.Column('id', db.Integer, db.ForeignKey('user.id'))
-  bid= db.Column('code', db.String(10), db.ForeignKey('Book.bid'))
-  name= db.column(db.String(80))
-  author= db.column(db.String(80))
+  bid= db.Column('bid', db.String(10), db.ForeignKey('Book.bid'))
+  name= db.Column(db.String(80))
+  author= db.Column(db.String(80))
   books= db.relationship('Book')
 
 def toDict(self):
@@ -49,7 +49,7 @@ class User(db.Model):
 
 
 class Book(db.Model):
-  bid= db.Column(db.Integer(10), primary_key= True)
+  bid= db.Column(db.Integer, primary_key= True)
   title= db.Column(db.String(80), nullable= False)
   author= db.Column(db.String(80), nullable= False)
   category= db.Column(db.String(80), nullable=False)
