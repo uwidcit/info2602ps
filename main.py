@@ -40,7 +40,7 @@ jwt = JWT(app, authenticate, identity)
 ''' End JWT Setup '''
 
 @app.route('/')
-def index():
+def client_app():
   return app.send_static_file('index.html')
 
 @app.route('/app')

@@ -1,4 +1,4 @@
-const server = "https://secret-ocean-12721.herokuapp.com";
+const server = "https://aqueous-waters-64531.herokuapp.com";
 
 function toast(message){
   M.toast({html: message});
