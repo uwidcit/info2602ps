@@ -7,7 +7,7 @@ $(document).ready(() => {
 });
 
 function getBooks(searchText) {
-	$('#preloader').removeClass('hidden');
+    $('#preloader').removeClass('hidden');
 	axios.get('https://www.googleapis.com/books/v1/volumes?q=' + searchText)
 	.then((response) => {
 		console.log(response);
@@ -28,8 +28,8 @@ function getBooks(searchText) {
 			output += "<a class='btn btn-danger href='#' onclick= addbook('"+ book.id +"')>Add</a>";
 			output += "</div>";
 			output += "</div>";
-		});
-		$('#preloader').addClass('hidden');
+        });
+        $('#preloader').addClass('hidden');
 		$('#books').html(output);
 	})
 	.catch((err) => {
@@ -80,8 +80,8 @@ function getbook() {
 		var dis = info.description.length > 250 ? info.description.substring(0, 250) + '...' : info.description;
 		output += dis +  "</p>";
 		output += "</div>";
-		output += "</div>";
-		$('#preloader').addClass('hidden');
+        output += "</div>";
+        $('#preloader').addClass('hidden');
 		$('#book').html(output);
 	})
 	.catch((err) => {
