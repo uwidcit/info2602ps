@@ -6,15 +6,15 @@ from flask_jwt import JWT, jwt_required, current_identity
 from sqlalchemy.exc import IntegrityError
 from datetime import timedelta 
 
-from models import db, Logs #add application models
+from models import db, User, UserReact, Post 
 
 ''' Begin boilerplate code '''
 
 ''' Begin Flask Login Functions '''
-# login_manager = LoginManager()
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.query.get(user_id)
+login_manager = LoginManager()
+@login_manager.user_loader
+def load_user(user_id):
+     return User.query.get(user_id)
 
 ''' End Flask Login Functions '''
 
@@ -23,9 +23,9 @@ def create_app():
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
   app.config['SECRET_KEY'] = "MYSECRET"
-#   app.config['JWT_EXPIRATION_DELTA'] = timedelta(days = 7) # uncomment if using flsk jwt
+  #app.config['JWT_EXPIRATION_DELTA'] = timedelta(days = 7) # uncomment if using flsk jwt
   CORS(app)
-#   login_manager.init_app(app) # uncomment if using flask login
+  login_manager.init_app(app)
   db.init_app(app)
   return app
 
@@ -36,14 +36,7 @@ app.app_context().push()
 ''' End Boilerplate Code '''
 
 ''' Set up JWT here (if using flask JWT)'''
-# def authenticate(uname, password):
-#   pass
 
-# #Payload is a dictionary which is passed to the function by Flask JWT
-# def identity(payload):
-#   pass
-
-# jwt = JWT(app, authenticate, identity)
 ''' End JWT Setup '''
 
 @app.route('/')
